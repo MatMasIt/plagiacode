@@ -64,10 +64,10 @@ void printSorted(std::map<std::string, long> map) // reverse
               {
                   if (l.second != r.second) // reverse
                   {
-                      return l.second > r.second;
+                      return l.second < r.second;
                   }
 
-                  return l.first < r.first;
+                  return l.first > r.first;
               });
 
     // print the vector
