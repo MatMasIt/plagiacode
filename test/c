@@ -1,0 +1,73 @@
+
+int main(int argc, char *argv[])
+{
+
+
+
+s
+
+    programame = argv[0];
+    switch (argc)
+    {
+    case 1: // only the program name
+        help();
+        break;
+
+    default:
+        if (argplat("h").compare(argv[1]) == 0)
+        {
+            help();
+        }
+        else if (argplat("v").compare(argv[1]) == 0)
+        {
+            version();
+        }
+        else
+        {
+
+            bool invisibleIgnore = true;
+            bool recursive = true;
+            int startFrom = 1;
+            if (argplat("ve").compare(argv[startFrom]) == 0)
+            {
+                verbose = false;
+                startFrom++;
+            }
+            if (argplat("i").compare(argv[startFrom]) == 0)
+            {
+                if (verbose)
+                    std::cout << "Not ignoring whitespaces" << std::endl;
+                invisibleIgnore = false;
+                startFrom++;
+            }
+            if (argplat("r").compare(argv[startFrom]) == 0)
+            {
+                if (verbose)
+                    std::cout << "Don't perform recursive search" << std::endl;
+                recursive = false;
+                startFrom++;
+            }
+            if (startFrom == argc)
+            { // there are no input files (we consider also the name of the program at arg[0])
+                std::cerr << "E: Specify some input files/directories" << std::endl;
+            }
+            else
+            {
+                std::vector<std::string> filePaths;
+                for (int i = startFrom; i < argc; i++)
+                {
+                    filePaths.push_back(std::string(argv[i]));
+                }
+                std::vector<std::filesystem::directory_entry> files = scanFiles(filePaths, recursive);
+                startComparison(files, invisibleIgnore);
+            }
+            break;
+        }
+    }
+
+    /*
+    std::string path = "/path/to/directory";
+    for (const auto & entry : fs::directory_iterator(path))
+        std::cout << entry.path() << std::endl;
+        */
+}
