@@ -55,6 +55,12 @@ to aide the detection of plagiarism\n\
               << std::endl;
 }
 
+/**
+ * @brief Argument flag with system-default shash
+ * 
+ * @param arg argument
+ * @return std::string argument flag 
+ */
 std::string argplat(const char *arg)
 {
     return std::string(OPTIONDASH) + std::string(arg);

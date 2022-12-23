@@ -111,6 +111,8 @@ std::map<std::string, long> startComparison(std::vector<std::filesystem::directo
                     removeChar(b, ' ');
                     removeChar(a, '\n');
                     removeChar(b, '\n');
+                    removeChar(a, '\t');
+                    removeChar(b, '\t');
                 }
                 long distance = LevenshteinDistance<std::string>(a, b); // calculate distances between files
                 if (verbose)
